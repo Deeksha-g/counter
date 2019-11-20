@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity,Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 const SimpleButton = props => {
   const {title, onPress} = props;
@@ -14,10 +14,12 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
+    borderRadius: 20,
+    padding: 20,
   },
-  text:{
-    padding:10
-  }
+  text: {
+    padding: 10,
+  },
 });
 
 export default SimpleButton;

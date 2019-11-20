@@ -8,14 +8,14 @@
 
 import React from 'react';
 import {View} from 'react-native';
-
+import styles from './Styles';
 import Counter from './src/components/Counter';
 
 class App extends React.Component {
   render() {
     return (
-      <View>
-        <Counter></Counter>
+      <View style={styles.appContainer}>
+        <Counter />
       </View>
     );
   }
