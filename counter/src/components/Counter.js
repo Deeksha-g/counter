@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Dimensions,
-} from 'react-native';
+import {Text, StyleSheet, View, Dimensions} from 'react-native';
 import SimpleButton from './SimpleButton';
 import SuccessMessage from './SuccessMessage';
 
@@ -15,28 +9,31 @@ class Counter extends React.Component {
 
     this.state = {
       counter: 0,
+      message: '',
     };
   }
   incrementCounter = () => {
-    this.setState(prevState => ({
-      counter: prevState.counter + 1,
-    }));
+    this.setState({counter: this.state.counter + 1}, () => {
+      this.getMessage();
+    });
   };
+
   decrementCounter = () => {
     if (this.state.counter >= 1) {
-      this.setState(prevState => ({
-        counter: prevState.counter - 1,
-      }));
+      this.setState({counter: this.state.counter - 1}, () => {
+        this.getMessage();
+      });
     }
   };
 
   getMessage = () => {
     switch (this.state.counter) {
       case 60:
-        return 'successfully completed session 1';
-
-      case 100:
-        return 'successfully completed session 2';
+        this.setState({message: 'successfully completed session 1'});
+        break;
+      case 120:
+        this.setState({message: 'successfully completed session 2'});
+        break;
       default:
         break;
     }
@@ -50,7 +47,7 @@ class Counter extends React.Component {
           <SimpleButton title="-" onPress={this.decrementCounter} />
         </View>
         {this.state.counter === 60 || this.state.counter === 120 ? (
-          <SuccessMessage value={this.state.counter} />
+          <SuccessMessage value={this.state.message} />
         ) : null}
       </View>
     );
@@ -59,7 +56,6 @@ class Counter extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,8 +66,8 @@ const styles = StyleSheet.create({
     borderColor: '#3289a8',
   },
   counterValue: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   counterSection: {
     flexDirection: 'row',

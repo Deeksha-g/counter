@@ -5,11 +5,7 @@ const SuccessMessage = props => {
   const {value} = props;
   return (
     <View>
-      {value === 60 ? (
-        <Text style={styles.text}>successfully completed session 1</Text>
-      ) : (
-        <Text style={styles.text}>successfully completed session 2</Text>
-      )}
+      <Text style={styles.text}>{value}</Text>
     </View>
   );
 };
@@ -17,8 +13,9 @@ const SuccessMessage = props => {
 const styles = StyleSheet.create({
   text: {
     padding: 10,
-    color: '#3289a8',
+    color: '#3269a8',
     textAlign: 'center',
+    fontSize: 16,
   },
 });
 
