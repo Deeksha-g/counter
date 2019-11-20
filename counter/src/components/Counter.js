@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: Dimensions.get('window').width - 20,
-    height: 400,
+    height: Dimensions.get('window').width,
     borderRadius: Dimensions.get('window').width - 20 / 2,
     borderWidth: 1,
     borderColor: '#3289a8',
