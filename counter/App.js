@@ -7,17 +7,11 @@
  */
 
 import React from 'react';
-import {View} from 'react-native';
-import styles from './Styles';
-import Counter from './src/components/Counter';
+import Navigation from './src/routes/navigation';
 
 class App extends React.Component {
   render() {
-    return (
-      <View style={styles.appContainer}>
-        <Counter />
-      </View>
-    );
+    return <Navigation />;
   }
 }
 

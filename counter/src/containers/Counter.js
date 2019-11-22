@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, StyleSheet, View, Dimensions} from 'react-native';
-import SimpleButton from './SimpleButton';
-import SuccessMessage from './SuccessMessage';
+import SimpleButton from '../components/SimpleButton';
+import SuccessMessage from '../components/SuccessMessage';
+// import {SimpleButton, SuccessMessage} from '../components';
 
 class Counter extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class Counter extends React.Component {
       });
     }
   };
+  goToNext = () => {
+    this.props.navigation.navigate('Details');
+  };
 
   getMessage = () => {
     switch (this.state.counter) {
@@ -40,21 +44,36 @@ class Counter extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.counterSection}>
-          <SimpleButton title="+" onPress={this.incrementCounter} />
-          <Text style={styles.counterValue}>{this.state.counter}</Text>
-          <SimpleButton title="-" onPress={this.decrementCounter} />
+      <View style={styles.mainConatiner}>
+        <View style={styles.container}>
+          <View style={styles.counterSection}>
+            <SimpleButton title="+" onPress={this.incrementCounter} />
+            <Text style={styles.counterValue}>{this.state.counter}</Text>
+            <SimpleButton title="-" onPress={this.decrementCounter} />
+          </View>
+          {this.state.counter === 60 || this.state.counter === 120 ? (
+            <SuccessMessage value={this.state.message} />
+          ) : null}
         </View>
-        {this.state.counter === 60 || this.state.counter === 120 ? (
-          <SuccessMessage value={this.state.message} />
-        ) : null}
+        <View>
+          <SimpleButton
+            title="Next"
+            onPress={this.goToNext}
+            style={{padding: 10}}
+          />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  mainConatiner: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+    alignItems: 'center',
+  },
   container: {
     backgroundColor: 'white',
     justifyContent: 'center',
@@ -64,6 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: Dimensions.get('window').width - 20 / 2,
     borderWidth: 1,
     borderColor: '#3289a8',
+    marginBottom: 20,
   },
   counterValue: {
     paddingLeft: 20,
